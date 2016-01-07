@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var tipLabel:DisplayLabel!
   var totalLabel:DisplayLabel!
   var billTextFieldView:BillTextFieldView!
+  var settingsViewController:SettingsViewController!
   var sliderButtonImage:UIImage?
   let slider = UISlider()
   let sliderLength = CGFloat(380.0)
@@ -64,13 +65,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     slider.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * 1.5)
     slider.setThumbImage(sliderButtonImage, forState: UIControlState.Normal)
-    firstLabel.text = "MARRY ME"
-    secondLabel.text = "LIKE MOM'S"
+    firstLabel.text = "PERFECTION"
+    secondLabel.text = "9 OUT OF 10"
     thirdLabel.text = "THUMBS UP"
-    fourthLabel.text = "PASSABLE"
-    fifthLabel.text = "EH, MEH"
-    sixthLabel.text = "TRY HARDER"
-    seventhLabel.text = "NEVER AGAIN"
+    fourthLabel.text = "SOLID"
+    fifthLabel.text = "NOT BAD"
+    sixthLabel.text = "EH, MEH"
+    seventhLabel.text = "WORST EVER"
     
     labels = [firstLabel,
       secondLabel,
@@ -115,12 +116,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
     billTextFieldView.billTextField.delegate = self
     
-    var settingsButton = UIView(frame: CGRectMake(0, 0, 20, 20))
+    let settingsButton = UIView(frame: CGRectMake(0, 400, 20, 20))
     settingsButton.backgroundColor = UIColor.orangeColor()
-    let labelTapped = UITapGestureRecognizer(target: self, action: "settingsButtonTapped:")
-    settingsButton.addGestureRecognizer(labelTapped)
-    self.view.addSubview(settingsButton)
+    let settingsButtonTapped = UITapGestureRecognizer(target: self, action: "settingsButtonTapped:")
+    settingsButton.addGestureRecognizer(settingsButtonTapped)
+//    self.view.addSubview(settingsButton)
     
+    settingsViewController = SettingsViewController()
+    
+  }
+  
+  func settingsButtonTapped(sender: UITapGestureRecognizer) {
+    print("button tapped")
+    settingsViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
+    settingsViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
+    self.presentViewController(settingsViewController, animated: true, completion: nil)
   }
   
   func updateDisplayLabels() {
@@ -332,8 +342,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
   
 
-  @IBAction func onTap(sender: AnyObject) {
-    self.view.endEditing(true)
-  }
+//  @IBAction func onTap(sender: AnyObject) {
+//    self.view.endEditing(true)
+//  }
 }
 

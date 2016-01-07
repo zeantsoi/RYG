@@ -10,6 +10,7 @@
 		C9458F141C3D1C41006EF184 /* DisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F131C3D1C41006EF184 /* DisplayLabel.swift */; };
 		C9458F181C3D1E6B006EF184 /* BillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F171C3D1E6B006EF184 /* BillTextField.swift */; };
 		C9458F1A1C3DEF51006EF184 /* BillTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F191C3DEF51006EF184 /* BillTextFieldView.swift */; };
+		C9458F1C1C3E4841006EF184 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F1B1C3E4841006EF184 /* SettingsViewController.swift */; };
 		C98E470F1C39FF0A004319FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E470E1C39FF0A004319FC /* AppDelegate.swift */; };
 		C98E47111C39FF0A004319FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E47101C39FF0A004319FC /* ViewController.swift */; };
 		C98E47141C39FF0A004319FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98E47121C39FF0A004319FC /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		C9458F131C3D1C41006EF184 /* DisplayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayLabel.swift; sourceTree = "<group>"; };
 		C9458F171C3D1E6B006EF184 /* BillTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillTextField.swift; sourceTree = "<group>"; };
 		C9458F191C3DEF51006EF184 /* BillTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillTextFieldView.swift; sourceTree = "<group>"; };
+		C9458F1B1C3E4841006EF184 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C98E470B1C39FF0A004319FC /* ryg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ryg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98E470E1C39FF0A004319FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C98E47101C39FF0A004319FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				C9458F171C3D1E6B006EF184 /* BillTextField.swift */,
 				C9458F191C3DEF51006EF184 /* BillTextFieldView.swift */,
 				C9458F131C3D1C41006EF184 /* DisplayLabel.swift */,
+				C9458F1B1C3E4841006EF184 /* SettingsViewController.swift */,
 				C98E47121C39FF0A004319FC /* Main.storyboard */,
 				C98E47151C39FF0A004319FC /* Assets.xcassets */,
 				C98E47171C39FF0A004319FC /* LaunchScreen.storyboard */,
@@ -150,6 +153,7 @@
 				C9458F141C3D1C41006EF184 /* DisplayLabel.swift in Sources */,
 				C98E47111C39FF0A004319FC /* ViewController.swift in Sources */,
 				C98E470F1C39FF0A004319FC /* AppDelegate.swift in Sources */,
+				C9458F1C1C3E4841006EF184 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
