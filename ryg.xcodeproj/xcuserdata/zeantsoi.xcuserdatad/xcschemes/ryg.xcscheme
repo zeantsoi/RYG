@@ -17,7 +17,7 @@
                BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
                BuildableName = "ryg.app"
                BlueprintName = "ryg"
-               ReferencedContainer = "container:ryg.xcodeproj">
+               ReferencedContainer = "container:RYG.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
             BuildableName = "ryg.app"
             BlueprintName = "ryg"
-            ReferencedContainer = "container:ryg.xcodeproj">
+            ReferencedContainer = "container:RYG.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
             BuildableName = "ryg.app"
             BlueprintName = "ryg"
-            ReferencedContainer = "container:ryg.xcodeproj">
+            ReferencedContainer = "container:RYG.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
             BuildableName = "ryg.app"
             BlueprintName = "ryg"
-            ReferencedContainer = "container:ryg.xcodeproj">
+            ReferencedContainer = "container:RYG.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

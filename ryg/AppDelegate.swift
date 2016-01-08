@@ -11,11 +11,23 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var window: UIWindow?
-
+  var window:UIWindow?
+  var navigationController:UINavigationController?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    let viewController = ViewController()
+
+    navigationController = UINavigationController()
+    navigationController?.pushViewController(viewController, animated: false)
+//
+//    var custom = UIView(frame: CGRectMake(0, 0, 20, 20))
+//    custom.backgroundColor = UIColor.blueColor()
+//    navigationController!.toolbar.tintColor = UIColor.blackColor()
+//    navigationController!.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: custom)
+//    
+    self.window?.rootViewController = navigationController
+    
     return true
   }
 

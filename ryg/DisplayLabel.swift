@@ -16,7 +16,7 @@ class DisplayLabel: UILabel {
     
     self.textAlignment = NSTextAlignment.Center
     self.textColor = UIColor.whiteColor()
-    self.font = UIFont(name: ".SFUIDisplay-Black", size: 40.0)
+    self.font = UIFont(name: "AvenirNext-DemiBold", size: 40.0)
     self.userInteractionEnabled = true
     self.textAlignment = NSTextAlignment.Right
   }

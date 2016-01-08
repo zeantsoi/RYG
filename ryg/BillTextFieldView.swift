@@ -12,6 +12,9 @@ import UIKit
 class BillTextFieldView: UIView {
   
   var billTextField:BillTextField!
+  var billTextLabel:BillTextLabel!
+  
+  var billTextFieldCursorColor:UIColor!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -21,20 +24,37 @@ class BillTextFieldView: UIView {
     blurEffectView.frame = self.bounds
     blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
     self.addSubview(blurEffectView)
-
     
-    billTextField = BillTextField(frame: CGRectMake(0.0, frame.size.height / 2.0, frame.size.width, 40.0))
+    let textFrame = CGRectMake(0.0, frame.size.height / 2.0, frame.size.width, 40.0)
+    billTextLabel = BillTextLabel(frame: textFrame)
+    billTextField = BillTextField(frame: textFrame)
+    self.addSubview(billTextLabel)
     self.addSubview(billTextField)
-
     
+    billTextField.addTarget(self, action: "billTextFieldEditingChanged:", forControlEvents: .EditingChanged)
   }
-
+  
   required init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
   
   func frameDidAdjust() {
     billTextField.frame = CGRectMake(0.0, self.frame.size.height / 2.0, self.frame.size.width, 40.0)
   }
-    
+  
+  func billTextFieldEditingChanged(sender: BillTextField) {
+    if (sender.text != nil) {
+      var numberFormatter = NSNumberFormatter()
+      numberFormatter.numberStyle = .CurrencyStyle
+      if let number = NSNumberFormatter().numberFromString(sender.text!) {
+        billTextLabel.text = numberFormatter.stringFromNumber(CGFloat(number))
+        billTextField.tintColor = UIColor.clearColor()
+      } else {
+        billTextLabel.text = nil
+        billTextField.tintColor = billTextFieldCursorColor
+      }
+      
+    }
+  }
+  
 }

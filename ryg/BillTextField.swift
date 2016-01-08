@@ -15,13 +15,9 @@ class BillTextField: UITextField, UITextFieldDelegate
     super.init(frame: frame)
         
     self.keyboardType = UIKeyboardType.DecimalPad
-    self.textColor = UIColor.whiteColor()
-    self.font = UIFont(name: ".SFUIDisplay-Black", size: 40.0)
-    self.backgroundColor = UIColor.clearColor()
+    self.textColor = UIColor.clearColor()
+    self.font = UIFont(name: "AvenirNext-DemiBold", size: 40.0)
     self.textAlignment = .Center
-    checkOrAddCurrency()
-    self.text = ""
-    self.tintColor = UIColor.whiteColor()
       
     self.delegate = self
 
@@ -32,16 +28,10 @@ class BillTextField: UITextField, UITextFieldDelegate
   }
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    self.checkOrAddCurrency()
-    return true;
+    // TODO: this doesn't work, find out why
+    let maxLength = 12
+    let currentLength = textField.text!.characters.count + string.characters.count - range.length
+    return currentLength <= maxLength
   }
   
-  func checkOrAddCurrency() {
-    var textString = String(self.text!)
-    var stringArray = Array(textString.characters)
-    if (stringArray.isEmpty == true || stringArray[0] != "$") {
-      textString = String("$\(textString)")
-    }
-    self.text = textString    
-  }
 }
