@@ -13,7 +13,6 @@
 		C9458F181C3D1E6B006EF184 /* BillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F171C3D1E6B006EF184 /* BillTextField.swift */; };
 		C9458F1A1C3DEF51006EF184 /* BillTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F191C3DEF51006EF184 /* BillTextFieldView.swift */; };
 		C9458F1C1C3E4841006EF184 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9458F1B1C3E4841006EF184 /* SettingsViewController.swift */; };
-		C971B8F91C3E70AB0050A253 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971B8F81C3E70AB0050A253 /* SettingsTableViewController.m */; };
 		C971B8FD1C3EEBE80050A253 /* DescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971B8FC1C3EEBE80050A253 /* DescriptionLabel.swift */; };
 		C971B9041C3FA96E0050A253 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971B9031C3FA96E0050A253 /* Slider.swift */; };
 		C98E470F1C39FF0A004319FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E470E1C39FF0A004319FC /* AppDelegate.swift */; };
@@ -30,9 +29,6 @@
 		C9458F171C3D1E6B006EF184 /* BillTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillTextField.swift; sourceTree = "<group>"; };
 		C9458F191C3DEF51006EF184 /* BillTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillTextFieldView.swift; sourceTree = "<group>"; };
 		C9458F1B1C3E4841006EF184 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		C971B8F81C3E70AB0050A253 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		C971B8FA1C3E710A0050A253 /* SettingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
-		C971B8FB1C3E71D30050A253 /* ryg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ryg-Bridging-Header.h"; sourceTree = "<group>"; };
 		C971B8FC1C3EEBE80050A253 /* DescriptionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionLabel.swift; sourceTree = "<group>"; };
 		C971B9031C3FA96E0050A253 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		C98E470B1C39FF0A004319FC /* RYG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RYG.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,9 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				C9458F1B1C3E4841006EF184 /* SettingsViewController.swift */,
-				C971B8FA1C3E710A0050A253 /* SettingsTableViewController.h */,
-				C971B8F81C3E70AB0050A253 /* SettingsTableViewController.m */,
-				C971B8FB1C3E71D30050A253 /* ryg-Bridging-Header.h */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -175,7 +168,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C971B8F91C3E70AB0050A253 /* SettingsTableViewController.m in Sources */,
 				C9458F1A1C3DEF51006EF184 /* BillTextFieldView.swift in Sources */,
 				C9219E851C4062BD0025433F /* BillTextLabel.swift in Sources */,
 				C9458F181C3D1E6B006EF184 /* BillTextField.swift in Sources */,
