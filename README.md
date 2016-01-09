@@ -21,4 +21,14 @@ Notes:
 * Most of the frame drawing is intended to account for differing screen sizes. View elements are clipped to all four bounds, rather than offset from the top-left.
 * There are no image assets in this app; everything (including the slider button) is drawn programmatically using CoreGraphics.
 
-![Video Walkthrough](https://github.com/zeantsoi/RYG/blob/master/ryg_1.gif)
+*Core functionality*
+
+![Default implementation](https://github.com/zeantsoi/RYG/blob/master/ryg_1.gif)
+
+*Theme and default configuration*
+
+![Theme and default configuration](https://github.com/zeantsoi/RYG/blob/master/ryg_2.gif)
+
+*Locale specific configuration*
+
+![Locale specific configuration](https://github.com/zeantsoi/RYG/blob/master/ryg_3.gif)
