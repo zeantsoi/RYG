@@ -2,7 +2,7 @@
 
 This is a Tip Calculator application for iOS submitted as the [pre-assignment](https://gist.github.com/timothy1ee/7747214) requirement for CodePath.
 
-Time spent: 20 hours
+Time spent: 25 hours
 
 Completed:
 
@@ -15,7 +15,7 @@ Completed:
 
 Notes:
 
-* This code is rudimentary and could use a lot of refactoring, cleanup, and abstraction.
+* This code is rudimentary and could use some refactoring, cleanup, and abstraction.
 * The blur popover effect can be achieved in earlier versions of iOS, but for the purposes of this exercise, this app targets iOS 8+.
 * All UI elements are added and manipulated programmatically; IB elements had issues with initialization from within the app delegate.
 * Most of the frame drawing is intended to account for differing screen sizes. View elements are clipped to all four bounds, rather than offset from the top-left.
