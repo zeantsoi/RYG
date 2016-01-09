@@ -9,9 +9,10 @@ Completed:
 * [x] Required: User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 * [x] Required: Settings page to change the default tip percentage.
 * [x] Optional: UI animations
-* [] Optional: Remembering the bill amount across app restarts (if <10mins)
+* [ ] Optional: Remembering the bill amount across app restarts (if <10mins)
 * [x] Optional: Using locale-specific currency and currency thousands separators.
 * [x] Optional: Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
+
 Notes:
 
 * This code is rudimentary and could use a lot of refactoring, cleanup, and abstraction.
@@ -20,4 +21,4 @@ Notes:
 * Most of the frame drawing is intended to account for differing screen sizes. View elements are clipped to all four bounds, rather than offset from the top-left.
 * There are no image assets in this app; everything (including the slider button) is drawn programmatically using CoreGraphics.
 
-![Video Walkthrough](https://github.com/zeantsoi/RYG/blob/master/ryg.gif)
+![Video Walkthrough](https://github.com/zeantsoi/RYG/blob/master/ryg_1.gif)
