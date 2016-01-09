@@ -218,9 +218,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
   func updateDisplayLabels() {
     let numberFormatter = NSNumberFormatter()
     numberFormatter.numberStyle = .CurrencyStyle
-    if let number = NSNumberFormatter().numberFromString(billTextFieldView.billTextField.text!) {
-      billLabel.text = numberFormatter.stringFromNumber(CGFloat(number))
-      totalLabel.text = numberFormatter.stringFromNumber(CGFloat(number))
+    if let bill = NSNumberFormatter().numberFromString(billTextFieldView.billTextField.text!) {
+      billLabel.text = numberFormatter.stringFromNumber(CGFloat(bill))
+      let total = CGFloat(bill) * (1 + (sliderLastPosition / 100.0))
+      totalLabel.text = numberFormatter.stringFromNumber(CGFloat(total))
     } else {
       billLabel.text = numberFormatter.stringFromNumber(0)
       totalLabel.text = numberFormatter.stringFromNumber(0)      

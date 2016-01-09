@@ -39,7 +39,9 @@ class BillTextFieldView: UIView {
   }
   
   func frameDidAdjust() {
-    billTextField.frame = CGRectMake(0.0, self.frame.size.height / 2.0, self.frame.size.width, 40.0)
+    let newFrame = CGRectMake(0.0, self.frame.size.height / 2.0, self.frame.size.width, 40.0)
+    billTextField.frame = newFrame
+    billTextLabel.frame = newFrame
   }
   
   func billTextFieldEditingChanged(sender: BillTextField) {

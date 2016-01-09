@@ -35,7 +35,7 @@
 		C971B8FB1C3E71D30050A253 /* ryg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ryg-Bridging-Header.h"; sourceTree = "<group>"; };
 		C971B8FC1C3EEBE80050A253 /* DescriptionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionLabel.swift; sourceTree = "<group>"; };
 		C971B9031C3FA96E0050A253 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
-		C98E470B1C39FF0A004319FC /* ryg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ryg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C98E470B1C39FF0A004319FC /* RYG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RYG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98E470E1C39FF0A004319FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C98E47101C39FF0A004319FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C98E47131C39FF0A004319FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 		C98E470C1C39FF0A004319FC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C98E470B1C39FF0A004319FC /* ryg.app */,
+				C98E470B1C39FF0A004319FC /* RYG.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,7 +120,7 @@
 			);
 			name = ryg;
 			productName = ryg;
-			productReference = C98E470B1C39FF0A004319FC /* ryg.app */;
+			productReference = C98E470B1C39FF0A004319FC /* RYG.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -303,7 +303,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zeantsoi.ryg;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RYG;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ryg/ryg-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -321,7 +321,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zeantsoi.ryg;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RYG;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ryg/ryg-Bridging-Header.h";
 			};
