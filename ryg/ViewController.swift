@@ -138,8 +138,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     settingsButton.addGestureRecognizer(settingsButtonTapped)
     self.view.addSubview(settingsButton)
     
-    // Set persistent vars
-    setLimitedPersistence()
+    // Temporarily bypass setting of persistent vars
+    defaultBillAmount = 0.0
+//      // Set persistent vars
+//    setLimitedPersistence()
     
     // Initialize bill text field view
     billTextFieldView = BillTextFieldView(frame: CGRectMake(0.0, 0.0, viewWidth, viewHeight), billAmount: CGFloat(defaultBillAmount))
