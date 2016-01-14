@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
-               BuildableName = "ryg.app"
+               BuildableName = "RYG.app"
                BlueprintName = "ryg"
                ReferencedContainer = "container:RYG.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
-            BuildableName = "ryg.app"
+            BuildableName = "RYG.app"
             BlueprintName = "ryg"
             ReferencedContainer = "container:RYG.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
-            BuildableName = "ryg.app"
+            BuildableName = "RYG.app"
             BlueprintName = "ryg"
             ReferencedContainer = "container:RYG.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C98E470A1C39FF0A004319FC"
-            BuildableName = "ryg.app"
+            BuildableName = "RYG.app"
             BlueprintName = "ryg"
             ReferencedContainer = "container:RYG.xcodeproj">
          </BuildableReference>

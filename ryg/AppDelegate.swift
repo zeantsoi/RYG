@@ -20,12 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     navigationController = UINavigationController()
     navigationController?.pushViewController(viewController, animated: false)
-//
-//    var custom = UIView(frame: CGRectMake(0, 0, 20, 20))
-//    custom.backgroundColor = UIColor.blueColor()
-//    navigationController!.toolbar.tintColor = UIColor.blackColor()
-//    navigationController!.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: custom)
-//    
+
     self.window?.rootViewController = navigationController
     
     return true

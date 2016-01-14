@@ -14,10 +14,14 @@ class BillTextFieldView: UIView {
   var billTextField:BillTextField!
   var billTextLabel:BillTextLabel!
   
+  var billTextFieldValue:CGFloat!
+  
   var billTextFieldCursorColor:UIColor!
   
-  override init(frame: CGRect) {
+  init(frame: CGRect, billAmount: CGFloat) {
     super.init(frame: frame)
+    
+    billTextFieldValue = billAmount
     
     let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
     let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -26,12 +30,17 @@ class BillTextFieldView: UIView {
     self.addSubview(blurEffectView)
     
     let textFrame = CGRectMake(0.0, frame.size.height / 2.0, frame.size.width, 40.0)
-    billTextLabel = BillTextLabel(frame: textFrame)
-    billTextField = BillTextField(frame: textFrame)
+    if (billTextFieldValue != 0.0) {
+      billTextField = BillTextField(frame: textFrame, value: billTextFieldValue)      
+      billTextLabel = BillTextLabel(frame: textFrame, value: billTextFieldValue)
+    } else {
+      billTextField = BillTextField(frame: textFrame)
+      billTextLabel = BillTextLabel(frame: textFrame)
+    }
     self.addSubview(billTextLabel)
     self.addSubview(billTextField)
     
-    billTextField.addTarget(self, action: "billTextFieldEditingChanged:", forControlEvents: .EditingChanged)
+    billTextField.addTarget(self, action: "billTextFieldEditingChanged:", forControlEvents: .EditingChanged)    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -46,7 +55,7 @@ class BillTextFieldView: UIView {
   
   func billTextFieldEditingChanged(sender: BillTextField) {
     if (sender.text != nil) {
-      var numberFormatter = NSNumberFormatter()
+      let numberFormatter = NSNumberFormatter()
       numberFormatter.numberStyle = .CurrencyStyle
       if let number = NSNumberFormatter().numberFromString(sender.text!) {
         billTextLabel.text = numberFormatter.stringFromNumber(CGFloat(number))
@@ -54,8 +63,7 @@ class BillTextFieldView: UIView {
       } else {
         billTextLabel.text = nil
         billTextField.tintColor = billTextFieldCursorColor
-      }
-      
+      }      
     }
   }
   

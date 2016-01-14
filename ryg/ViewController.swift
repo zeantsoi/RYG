@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var descriptionLabelTextColorValue:CGFloat!
   var buttonViewColor:UIColor!
   var defaultTipPercent:Float!
+  var defaultBillAmount:Float!
   
   var firstLabel=DescriptionLabel()
   var secondLabel=DescriptionLabel()
@@ -137,13 +138,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     settingsButton.addGestureRecognizer(settingsButtonTapped)
     self.view.addSubview(settingsButton)
     
+    // Set persistent vars
+    setLimitedPersistence()
+    
     // Initialize bill text field view
-    billTextFieldView = BillTextFieldView(frame: CGRectMake(0.0, 0.0, viewWidth, viewHeight))
+    billTextFieldView = BillTextFieldView(frame: CGRectMake(0.0, 0.0, viewWidth, viewHeight), billAmount: CGFloat(defaultBillAmount))
     let swipeRight = UISwipeGestureRecognizer(target: self, action: "endEditing:")
     let tapped = UITapGestureRecognizer(target: self, action: "endEditing:")
     billTextFieldView.addGestureRecognizer(swipeRight)
     billTextFieldView.addGestureRecognizer(tapped)
     billTextFieldView.billTextField.delegate = self
+    // Force billTextFieldView to refresh with defaultBillAmount
+    billTextFieldView.billTextFieldEditingChanged(billTextFieldView.billTextField)
     self.view.addSubview(billTextFieldView)
     
     // Initialize settings view controller
@@ -151,11 +157,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // Set notification for keyboard so we can do some math for framing
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-    
+
     // Pop bill text field into view on load
     makeBillTextFieldVisible(true)
   }
-  
+
+  override func viewWillAppear(animated: Bool) {
+    self.navigationController?.setNavigationBarHidden(true, animated: false)
+    sliderValueDidChange(slider)
+    setFromDefaults()
+    updateTheme()
+  }
+
   func setFromDefaults() {
     if (userDefaults.objectForKey("lightMode") == nil) {
       userDefaults.setBool(defaultLightMode, forKey: "lightMode")
@@ -182,11 +195,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
   }
   
-  override func viewWillAppear(animated: Bool) {
-    self.navigationController?.setNavigationBarHidden(true, animated: false)
-    sliderValueDidChange(slider)
-    setFromDefaults()
-    updateTheme()
+  func setLimitedPersistence() {
+    // If lastUsed isn't set, or if greater than ten minutes, reset
+    if (userDefaults.objectForKey("lastUsed") == nil) || (userDefaults.objectForKey("lastUsed")!.timeIntervalSinceNow > (60 * 10)) {
+      userDefaults.setFloat(0.0, forKey: "lastBill")
+      defaultBillAmount = 0.0
+    } else {
+      if (billTextFieldView != nil) {
+        if let currentBill = NSNumberFormatter().numberFromString(billTextFieldView.billTextField.text!) {
+          userDefaults.setFloat(Float(currentBill), forKey: "lastBillAmount")
+        } else {
+          userDefaults.setFloat(0.0, forKey: "lastBillAmount")    
+        }
+      }
+      defaultBillAmount = userDefaults.floatForKey("lastBillAmount")
+    }
+    userDefaults.setObject(NSDate(), forKey: "lastUsed")
   }
   
   func updateTheme() {
@@ -240,6 +264,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     self.becomeFirstResponder()
     makeBillTextFieldVisible(false)
     self.view.endEditing(true)
+    
+    // Since this is the last time a new value is entered,
+    // record the time and value in userDefaults
+    setLimitedPersistence()
   }
   
   func billLabelWasTapped(sender: UITapGestureRecognizer) {
@@ -413,8 +441,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     UIGraphicsEndImageContext()
     return image    
   }
-  
-  
+
   @IBAction func onTap(sender: AnyObject) {
     self.view.endEditing(true)
   }
