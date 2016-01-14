@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class DisplayLabel: UILabel {
+  
   override init(var frame: CGRect) {
     frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width - 20.0, frame.size.height)
     super.init(frame: frame)
@@ -21,7 +22,9 @@ class DisplayLabel: UILabel {
     self.textAlignment = NSTextAlignment.Right
   }
   
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
 }

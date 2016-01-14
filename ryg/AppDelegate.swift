@@ -16,11 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
-    let viewController = ViewController()
 
+    // Initialize the navigation controller
     navigationController = UINavigationController()
-    navigationController?.pushViewController(viewController, animated: false)
+    // Push a view controller on at launch
+    navigationController?.pushViewController(ViewController(), animated: false)
 
+    // Set the navigation controller as root
     self.window?.rootViewController = navigationController
     
     return true

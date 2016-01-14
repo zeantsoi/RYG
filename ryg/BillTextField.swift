@@ -14,21 +14,21 @@ class BillTextField: UITextField, UITextFieldDelegate
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
     initVars()
   }
   
+  
   init(frame: CGRect, value: CGFloat) {
     super.init(frame: frame)
-    
     self.text = String(value)
-    
     initVars()
   }
 
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   
   func initVars() {
     self.keyboardType = UIKeyboardType.DecimalPad
@@ -39,8 +39,9 @@ class BillTextField: UITextField, UITextFieldDelegate
     self.delegate = self    
   }
   
+  
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    // TODO: this doesn't work, find out why
+    // TODO: limiting character length work, find out why
     let maxLength = 12
     let currentLength = textField.text!.characters.count + string.characters.count - range.length
     return currentLength <= maxLength

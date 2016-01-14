@@ -28,6 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var defaultTipPercent:Float!
   var defaultBillAmount:Float!
   
+  // Description label initialization
   var firstLabel=DescriptionLabel()
   var secondLabel=DescriptionLabel()
   var thirdLabel=DescriptionLabel()
@@ -35,40 +36,48 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var fifthLabel=DescriptionLabel()
   var sixthLabel=DescriptionLabel()
   var seventhLabel=DescriptionLabel()
+  var labels:NSMutableArray!
   
+  // View elements
   var settingsButton:SettingsButton!
   var billLabel:DisplayLabel!
   var tipLabel:DisplayLabel!
   var totalLabel:DisplayLabel!
+  
+  // Bill field
   var billTextFieldView:BillTextFieldView!
+  
+  // Settings view
   var settingsViewController:SettingsViewController!
+
+  // Slider elements
   var sliderButtonImage:UIImage?
   var slider:Slider!
-  let defaultTextColorNumericValue = CGFloat(1.0/3.0)
-  let leftBoundOffset = CGFloat(18.0)
-  
+
+  // Slider view configuration
   var sliderLastPosition = CGFloat(0.0)
   var lastLabelAnimatedIndex:Int!
-  
-  var labels:NSMutableArray!
   var sliderColor:UIColor!
   var segmentLength:CGFloat!
   var halfSegmentLength:CGFloat!
   var currentSegmentIndex:Int!
   var relativeLength:CGFloat!
   var currentRelativePosition:CGFloat!
+
+  // General view configuration
+  let defaultTextColorNumericValue = CGFloat(1.0/3.0)
+  let leftBoundOffset = CGFloat(18.0)
   var keyboardHeight = CGFloat(0.0)
   
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Load user defaults and set configurable vars
     userDefaults = NSUserDefaults.standardUserDefaults()
     setFromDefaults()
     
-    self.view.backgroundColor = UIColor.whiteColor()
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    // Grab controller view dimensions for convenience
+    // Store controller view dimensions for convenience
     let viewWidth = self.view.frame.width
     let viewHeight = self.view.frame.height
 
@@ -89,7 +98,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
       sixthLabel,
       seventhLabel,
     ]
-    
     let labelNames = [
       "PERFECTION",
       "9 OUT OF 10",
@@ -99,14 +107,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
       "EH, MEH",
       "WORST EVER",
     ]
-
     for (index, label) in (labels as NSArray as! [DescriptionLabel]).enumerate() {
       label.updateFrame(index)
       label.text = labelNames[index]
       self.view.addSubview(label)
     }
 
-    // Set some convenience class variables
+    // Set some convenience vars for calculating slider interaction
     segmentLength = CGFloat(SLIDER_MAXIMUM - SLIDER_MINIMUM) / CGFloat(labels.count)
     relativeLength = CGFloat(SLIDER_MINIMUM - SLIDER_MINIMUM)
     halfSegmentLength = segmentLength / 2.0
@@ -130,18 +137,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     totalLabel = DisplayLabel(frame: CGRectMake(0.0, tipLabel.frame.origin.y + (displayLabelHeight), viewWidth, displayLabelHeight))
     self.view.addSubview(totalLabel)
     
-    // Initialize settings button
-    let settingsButtonDimension = CGFloat(40.0)
-    let settingsButtonInset = CGFloat(20.0)
-    settingsButton = SettingsButton(frame: CGRectMake(0.0 + settingsButtonInset, viewHeight - settingsButtonDimension - settingsButtonInset, settingsButtonDimension, settingsButtonDimension), strokeColorFromDefault: buttonViewColor)
-    let settingsButtonTapped = UITapGestureRecognizer(target: self, action: "settingsButtonTapped:")
-    settingsButton.addGestureRecognizer(settingsButtonTapped)
-    self.view.addSubview(settingsButton)
-    
     // Temporarily bypass setting of persistent vars
     defaultBillAmount = 0.0
-//      // Set persistent vars
-//    setLimitedPersistence()
+    //      // Set persistent vars
+    //    setLimitedPersistence()
     
     // Initialize bill text field view
     billTextFieldView = BillTextFieldView(frame: CGRectMake(0.0, 0.0, viewWidth, viewHeight), billAmount: CGFloat(defaultBillAmount))
@@ -154,6 +153,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     billTextFieldView.billTextFieldEditingChanged(billTextFieldView.billTextField)
     self.view.addSubview(billTextFieldView)
     
+    // Initialize settings button
+    let settingsButtonDimension = CGFloat(40.0)
+    let settingsButtonInset = CGFloat(20.0)
+    settingsButton = SettingsButton(frame: CGRectMake(0.0 + settingsButtonInset, viewHeight - settingsButtonDimension - settingsButtonInset, settingsButtonDimension, settingsButtonDimension), strokeColorFromDefault: buttonViewColor)
+    let settingsButtonTapped = UITapGestureRecognizer(target: self, action: "settingsButtonTapped:")
+    settingsButton.addGestureRecognizer(settingsButtonTapped)
+    self.view.addSubview(settingsButton)
+    
     // Initialize settings view controller
     settingsViewController = SettingsViewController(style: UITableViewStyle.Grouped, minTipPercent: slider.minimumValue, maxTipPercent: slider.maximumValue)
     
@@ -164,17 +171,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
     makeBillTextFieldVisible(true)
   }
 
+  
   override func viewWillAppear(animated: Bool) {
+    // Remove navigation bar when not in settings
     self.navigationController?.setNavigationBarHidden(true, animated: false)
+    // Always set slider according to the most recent user inputs
     sliderValueDidChange(slider)
+    // Update defaults if changed
     setFromDefaults()
+    // Update color theme if needed
     updateTheme()
   }
 
+
   func setFromDefaults() {
+    // Set default light mode if not set
     if (userDefaults.objectForKey("lightMode") == nil) {
       userDefaults.setBool(defaultLightMode, forKey: "lightMode")
     }
+    // Set default tip percent if not set
     if (userDefaults.objectForKey("defaultTipPercent") == nil) {
       userDefaults.setFloat(Float(defaultDefaultTipPercent), forKey: "defaultTipPercent")
     }
@@ -184,6 +199,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     defaultTipPercent = tipPercent
     
+    // Set class vars affecting color scheme
     if (lightMode) {
       mainBackgroundColor = UIColor.whiteColor()
       displayLabelTextColor = UIColor.lightGrayColor()
@@ -196,9 +212,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
       buttonViewColor = UIColor.whiteColor()
     }
   }
-  
+
+
+  // Some features (like last amount) will be saved temporarily
   func setLimitedPersistence() {
-    // If lastUsed isn't set, or if greater than ten minutes, reset
+    // If lastUsed isn't set, or if greater than ten minutes, reset;
+    // otherwise, save last value again
     if (userDefaults.objectForKey("lastUsed") == nil) || (userDefaults.objectForKey("lastUsed")!.timeIntervalSinceNow > (60 * 10)) {
       userDefaults.setFloat(0.0, forKey: "lastBill")
       defaultBillAmount = 0.0
@@ -214,9 +233,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     userDefaults.setObject(NSDate(), forKey: "lastUsed")
   }
-  
+
+
   func updateTheme() {
     let descriptionLabelTextColor = UIColor(red: descriptionLabelTextColorValue, green: descriptionLabelTextColorValue, blue: descriptionLabelTextColorValue, alpha: 1.0) 
+    // Set the color of all description labels
     for label in (labels as NSArray as! [DescriptionLabel]) {
       label.textColor = descriptionLabelTextColor  
     }
@@ -235,15 +256,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     changeSliderButtonColor()
   }
+
   
   func settingsButtonTapped(sender: UITapGestureRecognizer) {
+    // Show navigation bar in settings
     self.navigationController?.setNavigationBarHidden(false, animated: false)
+    // Push settings view controller on
     self.navigationController?.pushViewController(settingsViewController, animated: true)
   }
+
   
   func updateDisplayLabels() {
+    // Always format for currency
     let numberFormatter = NSNumberFormatter()
     numberFormatter.numberStyle = .CurrencyStyle
+    
+    // If a bill amount is entered, calculate from that;
+    // otherwise, calculate from zero
     if let bill = NSNumberFormatter().numberFromString(billTextFieldView.billTextField.text!) {
       billLabel.text = numberFormatter.stringFromNumber(CGFloat(bill))
       let total = CGFloat(bill) * (1 + (sliderLastPosition / 100.0))
@@ -257,10 +286,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     tipLabel.text = String(format: "%.1f%%", sliderLastPosition)
     tipLabel.textColor = sliderColor
     totalLabel.textColor = sliderColor
-
   }
-  
+
+  // Bill text view can be dismissed by tapping or swiping
   func endEditing(sender: UISwipeGestureRecognizer) {
+    // On the first edit, this will color and move the right display label
     animateLabels()
     self.updateDisplayLabels()
     self.becomeFirstResponder()
@@ -271,11 +301,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // record the time and value in userDefaults
     setLimitedPersistence()
   }
+
   
   func billLabelWasTapped(sender: UITapGestureRecognizer) {
     makeBillTextFieldVisible(true)
   }
+
   
+  // Protocol method that gets the height of the keyboard when raised;
+  // dimensions are factored in to account for different device sizes
   func keyboardWillShow(notification: NSNotification) {
     // Get the height of the keyboard
     let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue()
@@ -285,6 +319,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     billTextFieldView.frameDidAdjust()
   }
   
+
+  // push bill text field over current view
   func makeBillTextFieldVisible(visible: Bool) {
     billTextFieldView.billTextField.becomeFirstResponder()
     UIView.animateWithDuration(0.4, animations: {
@@ -293,13 +329,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     })
   }
 
+  
+
   func sliderValueDidChange(sender:Slider!)
   {
     let currentPosition = CGFloat(sender.value)
     // Find the slider position, offset to a minimum of zero
     currentRelativePosition = currentPosition - SLIDER_MINIMUM
 
-    // Disallow first and last segments to be selected beyond midway point
+    // Disallow first and last segments to be selected beyond midway points;
+    // purely a visual effect that keeps button from going too far
     if (currentPosition > SLIDER_MAXIMUM - halfSegmentLength) {
       slider.value = Float(SLIDER_MAXIMUM - halfSegmentLength);
       currentRelativePosition = CGFloat(slider.value) - SLIDER_MINIMUM
@@ -320,7 +359,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     updateDisplayLabels()
   }
   
+  
   func animateLabels() {
+    // Each description label has its own segment
     let segmentLength = (SLIDER_MAXIMUM - SLIDER_MINIMUM) / CGFloat(labels.count)
 
     // See which indicator the slider is currently pointed to
@@ -363,7 +404,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let labelColor = UIColor(red: adjustedRed, green: adjustedGreen, blue: defaultTextColorNumericValue, alpha: 1.0)
     labelToAnimate.textColor = labelColor
     
-    // Reset all other labels to the original
+    // Reset all other labels to the original position and color
     if (lastLabelAnimatedIndex != currentSegmentIndex) {
       for label in (labels as NSArray as! [UILabel]) {
         label.frame.origin.x = leftBoundOffset
@@ -373,6 +414,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     lastLabelAnimatedIndex = currentSegmentIndex
   }
+
   
   func changeSliderButtonColor() {
     var red = defaultTextColorNumericValue
@@ -398,6 +440,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     sliderButtonImage = drawSliderButton(sliderColor)
     slider.setThumbImage(sliderButtonImage, forState: UIControlState.Normal)
   }
+  
   
   func drawSliderButton(buttonColor:UIColor) -> UIImage {
     let size = CGSize(width: 64, height: 70)
@@ -444,8 +487,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     return image    
   }
 
+  
+  // Tapping anywhere on the view ends editing,
+  // a legacy holdover from IB
   @IBAction func onTap(sender: AnyObject) {
     self.view.endEditing(true)
   }
+
 }
 

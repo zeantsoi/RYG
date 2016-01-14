@@ -10,26 +10,29 @@ import Foundation
 import UIKit
 
 class BillTextLabel: UILabel {
+
+  // Bill text label is sometimes not initialized with text
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
     initVars()
   }
   
+  
   init(frame: CGRect, value: CGFloat) {
     super.init(frame: frame)
-    
     self.text = String(value)
-    
     initVars()
   }
+
+  
+  required init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+  }
+  
   
   func initVars() {
     self.font = UIFont(name: "AvenirNext-DemiBold", size: 40.0)
     self.textAlignment = .Center    
   }
-
-  required init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-  }
+  
 }
